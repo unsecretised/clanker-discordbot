@@ -95,11 +95,14 @@ fn event_handler(bot, packet: event_handler.Packet) {
 
       case interaction.d.data.name {
         "ping" -> {
-          case interaction.d.data.options {
-            option.Some(options) -> {
-              todo
+          case
+            discord_gleam.interaction_reply_message(interaction, "Pong!", True)
+          {
+            Ok(_) -> Nil
+            Error(_) -> {
+              logging.log(logging.Error, "Error sending message")
+              Nil
             }
-            _ -> Nil
           }
 
           Nil
