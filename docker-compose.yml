@@ -1,0 +1,10 @@
+services:
+  discord-bot:
+    build: .
+    container_name: gleam-discord-bot
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./logs:/app/logs   # optional, if you want logs persisted outside container
+    command: ["run"]        # overrides CMD if needed
